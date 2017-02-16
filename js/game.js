@@ -122,6 +122,9 @@ function startGame() {
 	image_element = document.getElementById('game-image');
 	guessed_element = document.getElementById('game-guesses');
 
+	// show all of the buttons again
+	showLetterButtons();
+
 	console.info("Clearing image");
 
 	// clear the image
@@ -146,6 +149,20 @@ function startGame() {
 	console.info("Game started");
 }
 
+// hide a specific letter button
+function hideLetterButton(letter) {
+	document.getElementById("btn-" + letter).style.visibility = "hidden";
+}
+
+// show all of the letter buttons
+function showLetterButtons() {
+	let buttons = document.getElementsByTagName("button");
+	for(button of buttons) {
+		button.style.visibility = "visible";
+	}
+}
+
+// update the display of the hangman image
 function displayImage() {
 	let image = "";
 
@@ -234,5 +251,8 @@ function makeGuess(letter) {
 
 		// update the word display
 		displayWord();
+
+		// hide the letter button
+		hideLetterButton(letter);
 	}
 }
